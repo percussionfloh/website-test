@@ -1,0 +1,51 @@
+[
+	{
+		"id": "http://zotero.org/users/local/BSEUzpNk/items/UGCL7P97",
+		"type": "book",
+		"collection-title": "Reihe",
+		"edition": "20. Auflage",
+		"ISBN": "214354324",
+		"number-of-pages": "299",
+		"publisher": "Olms",
+		"publisher-place": "Freiburg",
+		"title": "Test 1",
+		"URL": "www.mh-freiburg.de",
+		"volume": "Band",
+		"issued": {
+			"date-parts": [
+				[
+					"2026",
+					4,
+					20
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/BSEUzpNk/items/GA9K6HYX",
+		"type": "article-newspaper",
+		"edition": "38",
+		"page": "32879",
+		"publisher": "Verlag1",
+		"publisher-place": "Neuhausen",
+		"section": "3",
+		"title": "Test 2",
+		"URL": "www.web.de",
+		"volume": "Band1",
+		"author": [
+			{
+				"family": "Moldaschl",
+				"given": "Fabi"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2026",
+					4,
+					21
+				]
+			]
+		}
+	}
+]
