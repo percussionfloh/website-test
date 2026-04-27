@@ -1,30 +1,17 @@
-<script setup>
-const client = useSupabaseClient()
-const datenbankTest = ref([])
-const instrumentName = ref('')
+<script setup lang="ts">
 
-const createInstrument = async () => {
-  const { data, error } = await client.from('instruments').insert({
-    name: instrumentName.value
-  }).select().single()
-  datenbankTest.value.push(data)
-  if (error) throw error
-  instrumentName.value = ''
-}
+const { data } = await useFetch('/api/citations')
 
-onMounted(async ()=> {
-  const { data, error } = await client.from('datenbankTest').select()
-  datenbankTest.value = data
-})
 </script>
 
-
-
 <template>
-  <div class="min-h-screen bg-slate-900 text-white p-5">
-    <h1 class="text-4xl font-bold text-cyan-400">Instruments</h1>
-    <ul class="list-disc ml-5 text-xl mt-4">
-        <li v-for="datenbankTest in datenbankTest" :key="datenbankTest.id"> {{ datenbankTest.Author }} {{ datenbankTest.Key }}</li>
-    </ul>
+  <div v-if="data">
+    <div v-for="item in data" :key="item.id">
+      <h3>{{ item.data.title }}</h3>
+      <p>{{ item.data.type }}</p>
+      <p>
+        {{ item.data.issued?.['date-parts']?.[0]?.[0] }}
+      </p>
+    </div>
   </div>
 </template>
