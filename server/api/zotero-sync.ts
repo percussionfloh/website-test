@@ -13,7 +13,7 @@ const ZOTERO_API_KEY = config.zoteroApiKey
 const ZOTERO_USER_ID = config.zoteroUserId
 
   try {
-    // 📡 Daten von Zotero holen (CSL JSON!)
+    // Daten von Zotero holen
     const res = await fetch(
       `https://api.zotero.org/users/20374578/items?limit=100`,
       {
@@ -26,7 +26,7 @@ const ZOTERO_USER_ID = config.zoteroUserId
 
     const raw = await res.json()
 
-    // 🛡️ normalize response
+    // normalize response
     const csl = Array.isArray(raw)
     ? raw
     : raw.items
@@ -34,7 +34,7 @@ const ZOTERO_USER_ID = config.zoteroUserId
         : []
 
 
-    // 🔄 Transformieren
+    // Transformieren
     const transformed = csl.map((item: any) => {
       const date = item.issued?.['date-parts']?.[0] || []
 
@@ -47,7 +47,7 @@ const ZOTERO_USER_ID = config.zoteroUserId
       }
     })
 
-    // 🚀 Upsert in Supabase
+    // Upsert in Supabase
     const { error } = await supabase
       .from('citations')
       .upsert(transformed, { onConflict: 'id' })

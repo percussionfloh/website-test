@@ -13,12 +13,12 @@ export default defineEventHandler(async () => {
   )
 
   try {
-    // 📂 Datei laden
+    // Datei laden
     const filePath = path.resolve('server/data/test.json')
     const raw = fs.readFileSync(filePath, 'utf-8')
     const csl = JSON.parse(raw)
 
-    // 🔄 Transformieren
+    // Transformieren
     const transformed = csl.map((item: any) => {
       const date = item.issued?.['date-parts']?.[0] || []
 
@@ -31,14 +31,14 @@ export default defineEventHandler(async () => {
       }
     })
 
-    // 🚀 Upsert (wichtig!)
+    //Upsert
     const { data, error } = await supabase
       .from('citations')
       .upsert(transformed, {
         onConflict: 'id'
       })
 
-    // ❌ Fehlerhandling
+    // Fehlerhandling
     if (error) {
       console.error('Supabase error:', error)
 
@@ -48,7 +48,7 @@ export default defineEventHandler(async () => {
       }
     }
 
-    // ✅ Erfolg
+    // Erfolg
     return {
       success: true,
       inserted: transformed.length
