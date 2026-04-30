@@ -3,6 +3,21 @@ const client = useSupabaseClient()
 const citations = ref([])
 // const citationName = ref('')
 
+const formatCreator = (creator) => {
+  if (!creator) return ''
+  const firstName = creator.firstName ?? ''
+  const lastName = creator.lastName ?? ''
+  return lastName ? `${lastName} ${firstName}`.trim() : firstName.trim()
+}
+
+const formatCreators = (creators) => {
+  if (!creators || !creators.length) return ''
+  return creators
+    .map(formatCreator)
+    .filter(Boolean)
+    .join('; ')
+}
+
 // const createCitation = async () => {
 //   const { data, error } = await client.from('citations').insert({
 //     name: citationName.value
@@ -12,11 +27,11 @@ const citations = ref([])
 //   citationName.value = ''
 // }
 
-onMounted(async ()=> {
+onMounted(async () => {
   const { data, error } = await client.from('citations').select()
-  citations.value = data
-
-console.log(citations.value[0])
+  console.log('error:', error)
+  console.log('data:', data)
+  citations.value = data ?? []
 })
 
 
@@ -26,7 +41,10 @@ console.log(citations.value[0])
   <div class="min-h-screen bg-slate-900 text-white p-5">
     <h1 class="text-4xl font-bold text-cyan-400">ss</h1>
     <ul class="list-disc ml-5 text-xl mt-4">
-        <li v-for="citation in citations" :key="citation.key">123{{ citation.data.data.title }}</li>
+        <li v-for="citation in citations" :key="citation.key">
+          {{  }}
+          {{ formatCreators(citation.data.data?.creators) }}
+        </li>
     </ul>
   </div>
 </template>

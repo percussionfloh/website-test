@@ -9,7 +9,7 @@ export default defineNuxtConfig({
             supabaseUrl: process.env.SUPABASE_URL
         }
     },
-    modules: ['@nuxt/content', '@nuxtjs/supabase', '@nuxtjs/i18n'],
+    modules: ['@nuxt/content', '@nuxt/ui', '@nuxtjs/supabase', '@nuxtjs/i18n'],
     css: ['~/assets/main.css'],
     supabase: {
         redirect: false,
