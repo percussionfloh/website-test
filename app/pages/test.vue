@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script>
 
 const { data } = await useFetch('/api/citations')
 
