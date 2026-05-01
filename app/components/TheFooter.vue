@@ -4,6 +4,6 @@
 
 <template>
     <div>
-        hey
+        FOOTER
     </div>
 </template>
